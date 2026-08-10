@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>DELHI METRO SAATHI — Route Planner, Fare & Network Map</title>
+<meta name="description" content="Plan Delhi Metro routes across all lines and stations with fare, travel time, interchanges and an interactive network map." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <img src="logo.png" alt="Delhi Metro Saathi logo" />
+    <h1><span class="red">DELHI METRO</span><span class="white">SAATHI</span></h1>
+  </div>
+  <nav class="nav">
+    <button data-tab="planner" class="active">ROUTE PLANNER</button>
+    <button data-tab="stations">STATIONS</button>
+    <button data-tab="map">MAP</button>
+    <button data-tab="info">INFO</button>
+  </nav>
+  <div class="tools">
+    <div class="live-server-badge">
+      <span class="live-dot"></span> Server is Live
+    </div>
+  </div>
+</header>
+
+<main class="app">
+  <aside class="side">
+    <section class="panel show" data-panel="planner">
+      <div class="search">
+        <label for="from">From (Station / Landmark)</label>
+        <div class="field">
+          <span class="pin"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg></span>
+          <input id="from" autocomplete="off" placeholder="e.g. Rajiv Chowk" />
+          <ul class="ac" id="fromList"></ul>
+        </div>
+        <button class="swap" id="swap" title="Swap">&#8645;</button>
+        <label for="to">To (Station / Landmark)</label>
+        <div class="field">
+          <span class="pin"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg></span>
+          <input id="to" autocomplete="off" placeholder="e.g. Kashmere Gate" />
+          <ul class="ac" id="toList"></ul>
+        </div>
+        <button class="plan" id="planBtn">Plan Route</button>
+      </div>
+
+      <div class="stats" id="stats">
+        <div class="stat"><span>Fare:</span><b id="fare">&#8377;0</b></div>
+        <div class="stat"><span>&#9201; Time:</span><b id="time">&mdash;</b></div>
+        <div class="stat"><span>&#8646; Interchanges:</span><b id="changes">0</b></div>
+      </div>
+
+      <div class="details" id="detailsWrap">
+        <h3>Route Details <small>(Selected)</small></h3>
+        <div id="routeTitle">No route planned yet</div>
+        <div id="details">
+          <p class="hint">Enter a source and destination, or tap any station on the map, to get the fastest route with fare, timing, platform and interchange guidance.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" data-panel="stations">
+      <div class="spanel">
+        <input id="stationSearch" placeholder="Search all Delhi Metro stations..." />
+        <div id="stationList"></div>
+      </div>
+    </section>
+
+    <section class="panel" data-panel="map">
+      <div class="info">
+        <h4>Network Map</h4>
+        <p>Drag to pan, scroll or use +/&minus; to zoom. Tap any station dot to set it as your From/To.</p>
+        <h4>Lines</h4>
+        <ul id="lineLegendList"></ul>
+      </div>
+    </section>
+
+    <section class="panel" data-panel="info">
+      <div class="info">
+        <h4>Timings</h4>
+        <p>First train ~05:00 hrs &middot; Last train ~23:30 hrs (Airport Express 04:45&ndash;23:30). Sunday services start ~06:00 hrs.</p>
+        <h4>Fare Slabs (Token, Adult)</h4>
+        <ul>
+          <li>0&ndash;2 km &mdash; &#8377;10</li><li>2&ndash;5 km &mdash; &#8377;20</li><li>5&ndash;12 km &mdash; &#8377;30</li>
+          <li>12&ndash;21 km &mdash; &#8377;40</li><li>21&ndash;32 km &mdash; &#8377;50</li><li>32 km+ &mdash; &#8377;60</li>
+        </ul>
+        <p>Smart Card users get 10% off; 20% off during off-peak hours.</p>
+        <h4>Travel Tips</h4>
+        <ul>
+          <li>First coach of every train is reserved for women.</li>
+          <li>Keep your token/card handy at the exit gate.</li>
+          <li>Interchanges are estimated at 5 minutes of walking.</li>
+        </ul>
+        <h4>Helpline</h4>
+        <p>DMRC Helpline 155370 &middot; Emergency 112</p>
+      </div>
+    </section>
+  </aside>
+
+  <div class="mapwrap">
+    <div class="mapcard">
+      <svg id="map" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid meet"></svg>
+      <div class="mapctl">
+        <button id="zin" title="Zoom in">+</button>
+        <button id="zout" title="Zoom out">&minus;</button>
+        <button id="reset" title="Reset">&#8635;</button>
+      </div>
+      <div class="legend" id="legend"></div>
+      <div class="maptitle">Delhi Metro Network Map</div>
+    </div>
+  </div>
+</main>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("legend").innerHTML = LINES.map(function (l) {
+      return '<span><i style="background:' + l.color + '"></i>' + l.name + "</span>";
+    }).join("");
+    document.getElementById("lineLegendList").innerHTML = LINES.map(function (l) {
+      return "<li>" + l.name + " &mdash; " + l.stations.length + " stations</li>";
+    }).join("");
+  });
+</script>
+</body>
+</html>
