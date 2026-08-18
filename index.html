@@ -137,9 +137,6 @@
       return "<li>" + l.name + " &mdash; " + l.stations.length + " stations</li>";
     }).join("");
 
-    /* Mobile-only: auto-close the hamburger dropdown after a nav tab is tapped.
-       Purely a UX nicety for the phone layout; does nothing on desktop
-       and does not interfere with app.js's own tab-switching logic. */
     var navToggle = document.getElementById("navToggle");
     var mainNav = document.getElementById("mainNav");
     if (navToggle && mainNav) {
