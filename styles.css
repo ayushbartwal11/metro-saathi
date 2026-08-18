@@ -228,7 +228,7 @@ text.pin{font:700 10px Inter,sans-serif;fill:#fff;text-anchor:middle;pointer-eve
 .legend span{display:flex;align-items:center;gap:6px;font-size:10.5px;color:#3b4a68}
 .legend i{width:14px;height:4px;border-radius:2px}
 
-/* ---------- Mobile Only Layout Overhaul (Pure CSS) ---------- */
+/* ---------- Mobile ---------- */
 @media (max-width: 900px) {
   /* 1. Map ko mobile par puri tarah hide karna aur space free karna */
   .mapwrap {
