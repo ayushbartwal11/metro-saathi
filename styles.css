@@ -21,7 +21,6 @@ body{
 .topbar{
   height:76px;display:flex;align-items:center;justify-content:space-between;
   background:var(--navy);color:var(--text);padding:0 24px 0 0;border-bottom:1px solid #000;
-  position:relative;z-index:100;
 }
 .brand{display:flex;align-items:center;gap:14px;padding:0 30px 0 20px;height:100%;}
 .brand img{width:52px;height:52px;object-fit:contain}
@@ -37,17 +36,16 @@ body{
 .nav button:hover{color:#fff}
 .nav button.active{color:#fff;border-bottom-color:var(--lava)}
 
-/* ---------- live server badge (Desktop) ---------- */
+/* ---------- live server badge & animation ---------- */
 .tools{display:flex;align-items:center;gap:14px;}
 .live-server-badge{
   display:inline-flex;align-items:center;gap:8px;
   background:rgba(16, 185, 129, 0.12);
   border:1px solid rgba(16, 185, 129, 0.4);
-  color:#34d399 !important;font-weight:600;font-size:13.5px;
+  color:#34d399;font-weight:600;font-size:13.5px;
   padding:6px 14px;border-radius:20px;
   box-shadow:0 0 12px rgba(16, 185, 129, 0.2);
 }
-.live-server-badge span { color: #34d399 !important; }
 .live-dot{
   width:9px;height:9px;background:var(--emerald);border-radius:50%;
   box-shadow:0 0 8px var(--emerald);
@@ -59,8 +57,11 @@ body{
   100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
 }
 
-/* Hide mobile tools on desktop */
-.mobile-tools-container { display: none; }
+/* ---------- Hamburger + nav toggle (checkbox hack) ----------
+   Hidden/inert by default so DESKTOP layout is 100% unaffected.
+   Only activated for real inside the phone media query below. */
+.nav-toggle{ display:none; }
+.hamburger{ display:none; }
 
 /* ---------- layout ---------- */
 .app{display:flex;height:calc(100vh - 76px)}
@@ -85,7 +86,7 @@ body{
 }
 .field input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(13,92,192,.25)}
 
-/* ---------- Swap Button (Desktop) ---------- */
+/* ---------- Swap Button ---------- */
 .swap{
   position:absolute;
   left:50%;
@@ -106,6 +107,14 @@ body{
   box-shadow:0 6px 18px rgba(13,92,192,0.45);
   transform: translateX(-50%) scale(1.1);
 }
+.swap:hover svg, .swap:hover i {
+  animation: swapArrowsVerticalSplit 0.7s infinite alternate ease-in-out;
+}
+@keyframes swapArrowsVerticalSplit {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+  100% { transform: translateY(4px); }
+}
 
 /* ---------- Plan Route Button Animation ---------- */
 .plan{
@@ -115,6 +124,7 @@ body{
   position: relative; overflow: hidden;
   box-shadow: 0 4px 15px rgba(13, 92, 192, 0.4);
   animation: planShimmerAndPulse 3s infinite ease-in-out;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 .plan::after {
   content: '';
@@ -123,6 +133,10 @@ body{
   background: linear-gradient(60deg, transparent, rgba(255,255,255,0.25), transparent);
   transform: rotate(30deg) translateX(-100%);
   animation: planGlint 3.5s infinite linear;
+}
+.plan:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 6px 22px rgba(13, 92, 192, 0.6);
 }
 @keyframes planShimmerAndPulse {
   0% { box-shadow: 0 0 0 0 rgba(13, 92, 192, 0.6); }
@@ -143,6 +157,8 @@ body{
 .ac li:hover,.ac li.active{background:#eef3fd}
 .ac-name{font-size:14px;font-weight:600}
 .ac-sub{font-size:11px;color:#6b7a99}
+.ac-dots{display:flex;gap:4px;margin-top:3px}
+.ac-dots i{width:16px;height:4px;border-radius:2px}
 
 /* stats */
 .stats{display:none;gap:12px;padding:0 22px 20px}
@@ -154,140 +170,170 @@ body{
 /* details */
 .details{flex:1;overflow-y:auto;padding:18px 22px 40px;background:var(--navy-2);border-top:1px solid var(--line)}
 .details h3{font-size:14px;letter-spacing:1.4px;color:#fff;text-transform:uppercase}
+.details h3 small{color:var(--muted);text-transform:none;letter-spacing:0;font-weight:500}
 #routeTitle{font-size:19px;font-weight:700;color:#fff;margin:6px 0 16px}
 .hint{color:var(--muted);font-size:14px;line-height:1.6}
 
+.leg{border-left:4px solid var(--lc);padding:2px 0 2px 14px;margin:0 0 14px}
+.leg-head{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.chip{font-size:12px;font-weight:700;color:#0b1526;padding:3px 9px;border-radius:20px}
+.chip.sm{font-size:11px}
+.leg-num{font-size:12px;color:var(--muted)}
+.leg-count{font-size:12px;color:#cbd6ee;margin-left:auto}
+.leg-body{margin-top:8px;font-size:14px;color:#dae3f7;display:flex;flex-direction:column;gap:6px}
+.leg-body b{color:#fff;font-weight:600}
+.leg-body .row{display:flex;align-items:center;flex-wrap:wrap;gap:6px}
+.pf{font-size:11px;background:#22365c;border-radius:5px;padding:2px 7px;margin-left:6px;color:#bcd0f5}
+.leg-body details summary{cursor:pointer;font-size:12px;color:#8fb4f5;outline:none}
+.stops{margin:8px 0 4px 18px;font-size:13px;color:#b6c4e2;display:grid;gap:3px}
+.change{background:#1a2a49;border:1px dashed #3a5488;border-radius:8px;padding:10px 12px;
+  font-size:13.5px;color:#dbe5fa;margin:0 0 14px}
+.arrive{background:#12321f;border:1px solid #2b6a44;border-radius:8px;padding:11px 13px;
+  font-size:13.5px;color:#c9f2d9;margin-top:6px}
+
+/* stations panel */
+.spanel{padding:18px 22px 40px;overflow-y:auto;flex:1;background:var(--navy-2)}
+#stationSearch{width:100%;height:42px;border-radius:8px;border:1px solid #d5dcea;padding:0 14px;
+  font-size:14px;margin-bottom:16px;outline:none}
+.sline{margin-bottom:20px}
+.sline h4{font-size:14px;color:#fff;display:flex;align-items:center;gap:8px;margin-bottom:9px}
+.sline h4 i{width:14px;height:14px;border-radius:4px}
+.sline h4 small{color:var(--muted);font-weight:500}
+.sgrid{display:flex;flex-wrap:wrap;gap:6px}
+.spill{background:var(--navy-3);border:1px solid #2a4272;color:#dbe4f7;border-radius:20px;
+  padding:6px 11px;font-size:12.5px;cursor:pointer}
+.spill:hover{background:#22406e;border-color:#4a70b8}
+.spill em{font-style:normal;color:#8fb4f5}
+
+/* info panel */
+.info{padding:20px 22px 40px;overflow-y:auto;flex:1;background:var(--navy-2);font-size:14px;line-height:1.75;color:#cfdaf0}
+.info h4{color:#fff;margin:16px 0 6px;font-size:15px}
+.info ul{margin-left:18px}
+
 /* map */
-.mapcard{width:100%;height:100%;background:#fff;border:1px solid #e2e7f0;border-radius:10px;position:relative}
-#map{width:100%;height:100%;background:#fff}
+.mapcard{width:100%;height:100%;background:#fff;border:1px solid #e2e7f0;border-radius:10px;
+  overflow:hidden;position:relative;box-shadow:0 2px 10px rgba(15,30,60,.06)}
+#map{width:100%;height:100%;touch-action:none;cursor:grab;background:
+  linear-gradient(#eef2f8 1px,transparent 1px) 0 0/56px 56px,
+  linear-gradient(90deg,#eef2f8 1px,transparent 1px) 0 0/56px 56px,#fff}
+#map:active{cursor:grabbing}
+.lbl{font:500 8.5px Inter,sans-serif;fill:#3b4a68;pointer-events:none}
+.lbl.on{font-weight:700;fill:#0b1526}
+.pinlbl{font-size:11px;font-weight:800;fill:#0b1526}
+text.pin{font:700 10px Inter,sans-serif;fill:#fff;text-anchor:middle;pointer-events:none}
+.st{cursor:pointer}
+.route-glow{filter:drop-shadow(0 0 6px rgba(226,35,26,.45))}
+.maptitle{position:absolute;right:12px;bottom:12px;background:var(--navy);color:#fff;font-size:11.5px;
+  padding:5px 10px;border-radius:5px;letter-spacing:.3px}
+.mapctl{position:absolute;right:12px;top:12px;display:flex;flex-direction:column;gap:6px}
+.mapctl button{width:34px;height:34px;border-radius:7px;border:1px solid #dbe2ee;background:#fff;
+  cursor:pointer;font-size:15px;color:#12203a;box-shadow:0 2px 6px rgba(0,0,0,.08)}
+.mapctl button:hover{background:#eef3fd}
+.legend{position:absolute;left:12px;bottom:12px;background:rgba(255,255,255,.94);border:1px solid #e2e7f0;
+  border-radius:8px;padding:9px 11px;display:flex;flex-wrap:wrap;gap:6px 12px;max-width:60%}
+.legend span{display:flex;align-items:center;gap:6px;font-size:10.5px;color:#3b4a68}
+.legend i{width:14px;height:4px;border-radius:2px}
 
-/* ---------- MOBILE FIXES (HAMBURGER, SERVER LIVE & SWAP BUTTON) ---------- */
+/* =========================================================
+   PHONE LAYOUT ONLY — everything below this line only fires
+   under max-width:900px. Desktop rules above are untouched.
+   ========================================================= */
 @media (max-width:900px){
-  body{overflow:auto; background: var(--navy-2) !important;}
-  .topbar{height:64px;padding-right:12px; background: var(--navy) !important; display: flex; align-items: center; justify-content: space-between;}
-  .brand{padding:0 8px;gap:8px}
-  .brand img{width:36px;height:36px}
-  .brand h1{font-size:13px}
-  
-  /* Hide desktop nav and desktop tools */
-  .nav{display:none !important}
-  .tools.desktop-tools{display:none !important}
+  html,body{overflow-x:hidden}
+  body{overflow:auto}
 
-  /* Show mobile tools container holding Server is Live & Hamburger on the right */
-  .mobile-tools-container{
-    display: flex !important;
-    align-items: center;
-    gap: 10px;
+  /* ---- top bar: compact, no wide gaps ---- */
+  .topbar{height:58px;padding:0 12px}
+  .brand{padding:0;gap:8px}
+  .brand img{width:34px;height:34px}
+  .brand h1{font-size:12.5px;letter-spacing:.2px;line-height:1.05}
+
+  /* Hide the desktop horizontal nav bar completely on phone;
+     it re-appears as a dropdown driven by the hamburger below. */
+  .app > .nav, .topbar > .nav{ display:none; } /* fallback, overridden by dropdown rule below */
+
+  .tools{gap:8px}
+  .live-server-badge{font-size:11px;padding:5px 9px;gap:6px}
+  .live-server-badge .live-dot{width:7px;height:7px}
+
+  /* ---- hamburger icon, right of the live badge, phone only ---- */
+  .hamburger{
+    display:flex;flex-direction:column;justify-content:center;align-items:flex-end;
+    gap:4px;width:30px;height:30px;cursor:pointer;flex-shrink:0;
+  }
+  .hamburger span{
+    display:block;width:22px;height:2px;background:#fff;border-radius:2px;
+    transition:transform .25s ease, opacity .25s ease;
+  }
+  #navToggle:checked ~ .tools .hamburger span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+  #navToggle:checked ~ .tools .hamburger span:nth-child(2){opacity:0}
+  #navToggle:checked ~ .tools .hamburger span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+
+  /* ---- nav becomes a dropdown menu, phone only ---- */
+  .nav{
+    display:flex;
+    position:fixed;
+    top:58px;left:0;right:0;
+    flex-direction:column;
+    align-items:stretch;
+    height:auto;
+    max-height:0;
+    overflow:hidden;
+    background:var(--navy-2);
+    border-bottom:1px solid #000;
+    z-index:60;
+    transition:max-height .28s ease;
+  }
+  #navToggle:checked ~ .nav{ max-height:320px; }
+
+  .nav button{
+    text-align:left;
+    padding:14px 18px;
+    font-size:13.5px;
+    letter-spacing:.5px;
+    border-bottom:1px solid rgba(255,255,255,.06);
+    border-left:3px solid transparent;
+  }
+  .nav button.active{
+    border-left-color:var(--lava);
+    background:rgba(226,35,26,.08);
   }
 
-  .server-dot-wrapper{
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: rgba(16, 185, 129, 0.15);
-    border: 1px solid rgba(16, 185, 129, 0.4);
-    padding: 5px 11px;
-    border-radius: 18px;
-    box-shadow: 0 0 10px rgba(16, 185, 129, 0.2);
-  }
+  /* Remove the MAP tab entirely — no map on phone */
+  .nav button.map-tab-btn{ display:none; }
+  section.panel[data-panel="map"]{ display:none !important; }
 
-  .server-glowing-dot{
-    width: 8px;
-    height: 8px;
-    background: var(--emerald);
-    border-radius: 50%;
-    box-shadow: 0 0 8px var(--emerald);
-    animation: livePulse 2s infinite ease-in-out;
-  }
+  /* ---- remove the map section from phone layout entirely ---- */
+  .mapwrap{ display:none; }
 
-  .server-tooltip{
-    color: #34d399 !important;
-    font-weight: 600;
-    font-size: 12px;
-  }
+  /* App becomes a single column, no leftover white/paper space
+     since the map area is gone */
+  .app{flex-direction:column;height:auto;min-height:calc(100vh - 58px)}
+  .side{width:100%;max-width:100%}
 
-  .mobile-menu-container{
-    position: relative;
-  }
+  /* ---- tighten spacing / font sizes so zoom doesn't reveal
+         desktop-style wide gutters ---- */
+  .search{padding:14px 14px 16px}
+  .search label{font-size:12.5px;margin-bottom:5px}
+  .field{margin-bottom:14px}
+  .field:nth-of-type(1){margin-bottom:30px}
+  .field:nth-of-type(2){margin-bottom:16px}
+  .field input{height:42px;font-size:13.5px}
+  .swap{top:98px;width:36px;height:36px}
+  .plan{height:44px;font-size:14px}
 
-  .hamburger-btn{
-    background: var(--navy-3);
-    color: #fff;
-    border: 1px solid var(--line);
-    font-size: 18px;
-    width: 36px;
-    height: 36px;
-    border-radius: 8px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+  .stats{gap:8px;padding:0 14px 14px}
+  .stat{padding:10px 11px}
+  .stat span{font-size:11px}
+  .stat b{font-size:16px}
 
-  .mobile-dropdown-menu{
-    display: none;
-    position: absolute;
-    right: 0;
-    top: 44px;
-    background: var(--navy);
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-    width: 170px;
-    overflow: hidden;
-    z-index: 1000;
-  }
+  .details,.spanel,.info{padding:14px 14px 28px}
+  .details h3{font-size:12.5px}
+  #routeTitle{font-size:16px;margin:5px 0 12px}
+  .hint{font-size:13px}
 
-  .mobile-dropdown-menu.show-menu{
-    display: block !important;
-  }
+  .info{font-size:13px;line-height:1.65}
+  .info h4{font-size:14px;margin:14px 0 5px}
 
-  .mobile-dropdown-menu a{
-    display: block;
-    padding: 11px 14px;
-    color: var(--text);
-    text-decoration: none;
-    font-size: 13.5px;
-    font-weight: 500;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-  }
-
-  .mobile-dropdown-menu a:hover{
-    background: rgba(255,255,255,0.05);
-  }
-
-  .mobile-dropdown-menu a.active{
-    background: var(--blue) !important;
-    color: #fff !important;
-    font-weight: 700;
-  }
-
-  /* Layout and Background Optimization for Mobile */
-  .app{flex-direction:column;height:auto;background:var(--navy-2) !important;}
-  .side{width:100%;max-width:100%;height:auto;background:var(--navy-2) !important;}
-  .mapwrap{display:none !important}
-
-  /* Swap Button positioned between From & To inputs, shifted to the right with a gap */
-  .swap{
-    position: absolute !important;
-    left: auto !important;
-    right: 28px !important;
-    top: 93px !important;
-    transform: none !important;
-    width: 38px !important;
-    height: 38px !important;
-    border-radius: 50% !important;
-    background: linear-gradient(135deg, #ffffff, #eef3fd) !important;
-    border: 1.5px solid #cbd5e1 !important;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
-    z-index: 10 !important;
-  }
-  .swap:hover {
-    transform: none !important;
-  }
-
-  .stats{gap:8px;padding:0 16px 16px;background:var(--navy-2) !important;}
-  .stat b{font-size:17px}
-  .search{padding:16px;background:var(--navy-2) !important;}
-  .details,.spanel,.info{padding:16px 16px 32px;background:var(--navy-2) !important;color:var(--text);}
+  #stationSearch{height:40px;font-size:13.5px;margin-bottom:12px}
 }
