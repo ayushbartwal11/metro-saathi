@@ -25,9 +25,10 @@
     <button data-tab="info">INFO</button>
   </nav>
 
-  <!-- Mobile Tools & Hamburger Menu (Only visible on mobile) -->
+  <!-- Mobile Tools & Hamburger Menu -->
+  <!-- यहाँ मैंने वही classes रखी हैं जो आपके CSS में काम करेंगी -->
   <div class="mobile-tools-container">
-    <div class="server-dot-wrapper" title="Server is Live">
+    <div class="server-dot-wrapper">
       <span class="server-glowing-dot"></span>
       <span class="server-tooltip">Server is Live</span>
     </div>
@@ -148,7 +149,6 @@
       return "<li>" + l.name + " &mdash; " + l.stations.length + " stations</li>";
     }).join("");
 
-    // Mobile Hamburger Menu Toggle & Tab Sync Logic
     const hamburgerBtn = document.getElementById("hamburgerBtn");
     const mobileDropdown = document.getElementById("mobileDropdown");
 
@@ -177,7 +177,7 @@
           } else {
             document.querySelectorAll(".panel").forEach(function(p) { p.classList.remove("show"); });
             const targetPanel = document.querySelector('.panel[data-panel="' + targetTab + '"]');
-            if (targetPanel) targetPanel.classList.add("show");
+            if (targetPanel) targetPanel.add("show");
           }
           mobileDropdown.classList.remove("show-menu");
         });
