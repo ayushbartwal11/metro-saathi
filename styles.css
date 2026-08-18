@@ -1,3 +1,6 @@
+I've reviewed your CSS and found the issues. Here's the corrected version:
+
+```css
 :root{
   --lava:#e2231a;
   --navy:#0b1526;
@@ -57,9 +60,7 @@ body{
   100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
 }
 
-/* ---------- Hamburger + nav toggle (checkbox hack) ----------
-   Hidden/inert by default so DESKTOP layout is 100% unaffected.
-   Only activated for real inside the phone media query below. */
+/* ---------- Hamburger + nav toggle (checkbox hack) ---------- */
 .nav-toggle{ display:none; }
 .hamburger{ display:none; }
 
@@ -235,14 +236,12 @@ text.pin{font:700 10px Inter,sans-serif;fill:#fff;text-anchor:middle;pointer-eve
 .legend i{width:14px;height:4px;border-radius:2px}
 
 /* =========================================================
-   PHONE LAYOUT ONLY — everything below this line only fires
-   under max-width:900px. Desktop rules above are untouched.
+   PHONE LAYOUT ONLY
    ========================================================= */
 @media (max-width:900px){
   html,body{overflow-x:hidden}
   body{overflow:auto}
 
-  /* ---- top bar: compact, no wide gaps ---- */
   .topbar{height:58px;padding:0 12px}
   .brand{padding:0;gap:8px}
   .brand img{width:34px;height:34px}
@@ -252,7 +251,6 @@ text.pin{font:700 10px Inter,sans-serif;fill:#fff;text-anchor:middle;pointer-eve
   .live-server-badge{font-size:11px;padding:5px 9px;gap:6px}
   .live-server-badge .live-dot{width:7px;height:7px}
 
-  /* ---- hamburger icon, right of the live badge, phone only ---- */
   .hamburger{
     display:flex;flex-direction:column;justify-content:center;align-items:flex-end;
     gap:4px;width:30px;height:30px;cursor:pointer;flex-shrink:0;
@@ -265,7 +263,6 @@ text.pin{font:700 10px Inter,sans-serif;fill:#fff;text-anchor:middle;pointer-eve
   #navToggle:checked ~ .tools .hamburger span:nth-child(2){opacity:0}
   #navToggle:checked ~ .tools .hamburger span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
 
-  /* ---- nav becomes a dropdown menu, phone only ---- */
   .nav{
     display:flex;
     position:fixed;
@@ -295,20 +292,14 @@ text.pin{font:700 10px Inter,sans-serif;fill:#fff;text-anchor:middle;pointer-eve
     background:rgba(226,35,26,.08);
   }
 
-  /* Remove the MAP tab entirely — no map on phone */
   .nav button.map-tab-btn{ display:none; }
   section.panel[data-panel="map"]{ display:none !important; }
 
-  /* ---- remove the map section from phone layout entirely ---- */
   .mapwrap{ display:none; }
 
-  /* App becomes a single column, no leftover white/paper space
-     since the map area is gone */
   .app{flex-direction:column;height:auto;min-height:calc(100vh - 58px)}
   .side{width:100%;max-width:100%}
 
-  /* ---- tighten spacing / font sizes so zoom doesn't reveal
-         desktop-style wide gutters ---- */
   .search{padding:14px 14px 16px}
   .search label{font-size:12.5px;margin-bottom:5px}
   .field{margin-bottom:14px}
