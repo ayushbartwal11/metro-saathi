@@ -57,9 +57,7 @@ body{
   100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
 }
 
-/* ---------- Hamburger + nav toggle (checkbox hack) ----------
-   Hidden/inert by default so DESKTOP layout is 100% unaffected.
-   Only activated for real inside the phone media query below. */
+/* ---------- Hamburger + nav toggle (checkbox hack) ---------- */
 .nav-toggle{ display:none; }
 .hamburger{ display:none; }
 
@@ -86,7 +84,7 @@ body{
 }
 .field input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(13,92,192,.25)}
 
-/* ---------- Swap Button ---------- */
+/* ---------- Swap Button (Desktop) ---------- */
 .swap{
   position:absolute;
   left:50%;
@@ -239,11 +237,16 @@ text.pin{font:700 10px Inter,sans-serif;fill:#fff;text-anchor:middle;pointer-eve
    under max-width:900px. Desktop rules above are untouched.
    ========================================================= */
 @media (max-width:900px){
-  html,body{overflow-x:hidden}
-  body{overflow:auto}
+  html,body{
+    overflow-x:hidden !important;
+    height:auto !important;
+    min-height:100% !important;
+    background:var(--navy-2) !important;
+  }
+  body{overflow-y:auto !important;}
 
   /* ---- top bar: compact, no wide gaps ---- */
-  .topbar{height:58px;padding:0 12px}
+  .topbar{height:58px;padding:0 12px;background:var(--navy) !important;}
   .brand{padding:0;gap:8px}
   .brand img{width:34px;height:34px}
   .brand h1{font-size:12.5px;letter-spacing:.2px;line-height:1.05}
@@ -254,7 +257,7 @@ text.pin{font:700 10px Inter,sans-serif;fill:#fff;text-anchor:middle;pointer-eve
 
   /* ---- hamburger icon, right of the live badge, phone only ---- */
   .hamburger{
-    display:flex;flex-direction:column;justify-content:center;align-items:flex-end;
+    display:flex !important;flex-direction:column;justify-content:center;align-items:flex-end;
     gap:4px;width:30px;height:30px;cursor:pointer;flex-shrink:0;
   }
   .hamburger span{
@@ -265,65 +268,98 @@ text.pin{font:700 10px Inter,sans-serif;fill:#fff;text-anchor:middle;pointer-eve
   #navToggle:checked ~ .tools .hamburger span:nth-child(2){opacity:0}
   #navToggle:checked ~ .tools .hamburger span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
 
-  /* ---- nav becomes a dropdown menu, phone only ---- */
+  /* ---- nav dropdown options visibility fix (FIXED) ---- */
   .nav{
-    display:flex;
-    position:fixed;
-    top:58px;left:0;right:0;
-    flex-direction:column;
-    align-items:stretch;
-    height:auto;
-    max-height:0;
-    overflow:hidden;
-    background:var(--navy-2);
-    border-bottom:1px solid #000;
-    z-index:60;
-    transition:max-height .28s ease;
+    display:flex !important;
+    position:fixed !important;
+    top:58px !important;left:0 !important;right:0 !important;
+    flex-direction:column !important;
+    align-items:stretch !important;
+    height:auto !important;
+    max-height:0 !important;
+    overflow:hidden !important;
+    background:var(--navy-2) !important;
+    border-bottom:1px solid #000 !important;
+    z-index:99999 !important;
+    transition:max-height .28s ease !important;
   }
-  #navToggle:checked ~ .nav{ max-height:320px; }
+  #navToggle:checked ~ .nav{ max-height:350px !important; }
 
   .nav button{
-    text-align:left;
-    padding:14px 18px;
-    font-size:13.5px;
-    letter-spacing:.5px;
-    border-bottom:1px solid rgba(255,255,255,.06);
-    border-left:3px solid transparent;
+    text-align:left !important;
+    padding:14px 18px !important;
+    font-size:13.5px !important;
+    letter-spacing:.5px !important;
+    border-bottom:1px solid rgba(255,255,255,.06) !important;
+    border-left:3px solid transparent !important;
+    color:var(--text) !important;
+    background:var(--navy-2) !important;
   }
   .nav button.active{
-    border-left-color:var(--lava);
-    background:rgba(226,35,26,.08);
+    border-left-color:var(--lava) !important;
+    background:rgba(226,35,26,.15) !important;
   }
 
   /* Remove the MAP tab entirely — no map on phone */
-  .nav button.map-tab-btn{ display:none; }
+  .nav button.map-tab-btn{ display:none !important; }
   section.panel[data-panel="map"]{ display:none !important; }
 
   /* ---- remove the map section from phone layout entirely ---- */
-  .mapwrap{ display:none; }
+  .mapwrap{ display:none !important; }
 
-  /* App becomes a single column, no leftover white/paper space
-     since the map area is gone */
-  .app{flex-direction:column;height:auto;min-height:calc(100vh - 58px)}
-  .side{width:100%;max-width:100%}
+  /* App becomes a single column, no leftover white/paper space */
+  .app{
+    flex-direction:column !important;
+    height:auto !important;
+    min-height:calc(100vh - 58px) !important;
+    background:var(--navy-2) !important;
+    overflow:visible !important;
+  }
+  .side{
+    width:100% !important;
+    max-width:100% !important;
+    height:auto !important;
+    background:var(--navy-2) !important;
+    overflow:visible !important;
+    padding-bottom:10px !important;
+  }
 
-  /* ---- tighten spacing / font sizes so zoom doesn't reveal
-         desktop-style wide gutters ---- */
-  .search{padding:14px 14px 16px}
+  /* ---- Swap Button alignment fix (shifted right between From and To) ---- */
+  .swap{
+    position:absolute !important;
+    left:auto !important;
+    right:20px !important;
+    top:98px !important;
+    transform:none !important;
+    width:36px !important;
+    height:36px !important;
+    border-radius:50% !important;
+    background:linear-gradient(135deg, #ffffff, #eef3fd) !important;
+    border:1.5px solid #cbd5e1 !important;
+    box-shadow:0 4px 12px rgba(0,0,0,0.25) !important;
+    z-index:10 !important;
+  }
+  .swap:hover{transform:none !important;}
+
+  /* ---- tighten spacing / font sizes ---- */
+  .search{padding:14px 14px 16px; background:var(--navy-2) !important;}
   .search label{font-size:12.5px;margin-bottom:5px}
   .field{margin-bottom:14px}
   .field:nth-of-type(1){margin-bottom:30px}
   .field:nth-of-type(2){margin-bottom:16px}
   .field input{height:42px;font-size:13.5px}
-  .swap{top:73px;width:34px;height:34px;font-size:14px}
   .plan{height:44px;font-size:14px}
 
-  .stats{gap:8px;padding:0 14px 14px}
+  .stats{gap:8px;padding:0 14px 14px; background:var(--navy-2) !important;}
   .stat{padding:10px 11px}
   .stat span{font-size:11px}
   .stat b{font-size:16px}
 
-  .details,.spanel,.info{padding:14px 14px 28px}
+  .details,.spanel,.info{
+    padding:14px 14px 20px !important;
+    background:var(--navy-2) !important;
+    color:var(--text) !important;
+  }
   .details h3{font-size:12.5px}
   #routeTitle{font-size:16px;margin:5px 0 12px}
   .hint{font-size:13px}
