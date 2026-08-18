@@ -37,7 +37,7 @@ body{
 .nav button:hover{color:#fff}
 .nav button.active{color:#fff;border-bottom-color:var(--lava)}
 
-/* ---------- live server badge & animation ---------- */
+/* ---------- live server badge & animation (Desktop Only) ---------- */
 .tools{display:flex;align-items:center;gap:14px;}
 .live-server-badge{
   display:inline-flex;align-items:center;gap:8px;
@@ -83,12 +83,11 @@ body{
 }
 .field input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(13,92,192,.25)}
 
-/* ---------- Swap Button ---------- */
+/* ---------- Swap Button (Desktop Default) ---------- */
 .swap{
   position:absolute;
-  left:50%;
+  right:34px;
   top:89px;
-  transform:translateX(-50%);
   width:40px;height:40px;border-radius:50%;
   background: linear-gradient(135deg, #ffffff, #eef3fd);
   border: 1.5px solid #cbd5e1;
@@ -102,7 +101,7 @@ body{
   color: #fff;
   border-color: #fff;
   box-shadow:0 6px 18px rgba(13,92,192,0.45);
-  transform: translateX(-50%) scale(1.1);
+  transform: scale(1.1);
 }
 .swap:hover svg, .swap:hover i {
   animation: swapArrowsVerticalSplit 0.7s infinite alternate ease-in-out;
@@ -260,7 +259,7 @@ text.pin{font:700 10px Inter,sans-serif;fill:#fff;text-anchor:middle;pointer-eve
     position:relative;
   }
   
-  /* Curved Hamburger Icon Styling */
+  /* Hamburger Icon Styling */
   .hamburger-btn{
     background:var(--navy-2);
     color:#fff;
@@ -317,4 +316,16 @@ text.pin{font:700 10px Inter,sans-serif;fill:#fff;text-anchor:middle;pointer-eve
   .stat b{font-size:17px}
   .search{padding:16px;background:var(--navy-2) !important;}
   .details,.spanel,.info{padding:16px 16px 32px;background:var(--navy-2) !important;color:var(--text);}
+
+  /* Swap Button Positioning for Mobile: Exactly midway between inputs and offset slightly from the right edge */
+  .swap{
+    position: absolute;
+    top: 88px;
+    right: 22px;
+    left: auto;
+    transform: none;
+  }
+  .swap:hover{
+    transform: scale(1.08);
+  }
 }
