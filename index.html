@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>DELHI METRO साथी — Route Planner, Fare & Network Map</title>
+<title>DELHI METRO SAATHI — Route Planner, Fare & Network Map</title>
 <meta name="description" content="Plan Delhi Metro routes across all lines and stations with fare, travel time, interchanges and an interactive network map." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,8 +14,8 @@
 
 <header class="topbar">
   <div class="brand">
-    <img src="logo.png" alt="Delhi Metro Saathi logo" class="brand-logo" />
-    <h1><span class="red">DELHI METRO</span><span class="white">साथी</span></h1>
+    <img src="logo.png" alt="Delhi Metro Saathi logo" />
+    <h1><span class="red">DELHI METRO</span><span class="white">SAATHI</span></h1>
   </div>
   
   <nav class="nav">
@@ -25,7 +25,7 @@
     <button data-tab="info">INFO</button>
   </nav>
 
-  <!-- Mobile Tools & Hamburger Menu -->
+  <!-- Mobile Tools & Hamburger Menu (Only visible on mobile) -->
   <div class="mobile-tools-container">
     <div class="server-dot-wrapper" title="Server is Live">
       <span class="server-glowing-dot"></span>
@@ -148,6 +148,7 @@
       return "<li>" + l.name + " &mdash; " + l.stations.length + " stations</li>";
     }).join("");
 
+    // Mobile Hamburger Menu Toggle & Tab Sync Logic
     const hamburgerBtn = document.getElementById("hamburgerBtn");
     const mobileDropdown = document.getElementById("mobileDropdown");
 
