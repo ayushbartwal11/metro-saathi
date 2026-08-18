@@ -17,7 +17,9 @@ body{
   background:var(--paper);color:#12203a;overflow:hidden;
 }
 
-/* ---------- top bar (Desktop Original) ---------- */
+/* =========================================================
+   DESKTOP STYLES (ORIGINAL & UNTOUCHED AS YOU WANTED)
+   ========================================================= */
 .topbar{
   height:76px;display:flex;align-items:center;justify-content:space-between;
   background:var(--navy);color:var(--text);padding:0 24px 0 0;border-bottom:1px solid #000;
@@ -36,7 +38,7 @@ body{
 .nav button:hover{color:#fff}
 .nav button.active{color:#fff;border-bottom-color:var(--lava)}
 
-/* ---------- live server badge & animation ---------- */
+/* live server badge */
 .tools{display:flex;align-items:center;gap:14px;}
 .live-server-badge{
   display:inline-flex;align-items:center;gap:8px;
@@ -57,11 +59,9 @@ body{
   100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
 }
 
-/* ---------- Hamburger + nav toggle (checkbox hack) ---------- */
 .nav-toggle{ display:none; }
 .hamburger{ display:none; }
 
-/* ---------- layout (Desktop Original) ---------- */
 .app{display:flex;height:calc(100vh - 76px)}
 .side{width:520px;max-width:46vw;background:var(--navy);color:var(--text);display:flex;flex-direction:column;overflow:hidden}
 .mapwrap{flex:1;padding:14px;background:var(--paper);position:relative}
@@ -69,7 +69,6 @@ body{
 .panel{display:none;flex:1;min-height:0;flex-direction:column}
 .panel.show{display:flex}
 
-/* search block (Desktop Original spacing) */
 .search{padding:28px 22px 22px;position:relative}
 .search label{display:block;font-size:14px;margin:0 0 7px;color:#dbe4f7}
 
@@ -84,7 +83,7 @@ body{
 }
 .field input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(13,92,192,.25)}
 
-/* ---------- Swap Button (Desktop) ---------- */
+/* Desktop Swap Button */
 .swap{
   position:absolute;
   left:50%;
@@ -106,7 +105,6 @@ body{
   transform: translateX(-50%) scale(1.1);
 }
 
-/* ---------- Plan Route Button Animation ---------- */
 .plan{
   width:100%;height:48px;border:0;border-radius:8px;
   background: linear-gradient(135deg, var(--blue), #1e73e8);
@@ -115,7 +113,6 @@ body{
   box-shadow: 0 4px 15px rgba(13, 92, 192, 0.4);
 }
 
-/* autocomplete */
 .ac{position:absolute;z-index:8;left:0;right:0;top:100%;margin-top:4px;background:#fff;border-radius:8px;
   box-shadow:0 14px 34px rgba(0,0,0,.35);overflow:hidden;display:none;max-height:300px;overflow-y:auto}
 .ac.open{display:block}
@@ -124,20 +121,17 @@ body{
 .ac-name{font-size:14px;font-weight:600}
 .ac-sub{font-size:11px;color:#6b7a99}
 
-/* stats */
 .stats{display:none;gap:12px;padding:0 22px 20px}
 .stats.show{display:flex}
 .stat{flex:1;background:var(--navy-3);border:1px solid #2a4272;border-radius:10px;padding:12px 14px}
 .stat span{display:block;font-size:12px;color:#a9bbdd;margin-bottom:5px}
 .stat b{font-size:20px;font-weight:800;color:#fff}
 
-/* details */
 .details{flex:1;overflow-y:auto;padding:18px 22px 40px;background:var(--navy-2);border-top:1px solid var(--line)}
 .details h3{font-size:14px;letter-spacing:1.4px;color:#fff;text-transform:uppercase}
 #routeTitle{font-size:19px;font-weight:700;color:#fff;margin:6px 0 16px}
 .hint{color:var(--muted);font-size:14px;line-height:1.6}
 
-/* stations panel */
 .spanel{padding:18px 22px 40px;overflow-y:auto;flex:1;background:var(--navy-2)}
 #stationSearch{width:100%;height:42px;border-radius:8px;border:1px solid #d5dcea;padding:0 14px;font-size:14px;margin-bottom:16px;outline:none}
 .sline{margin-bottom:20px}
@@ -145,15 +139,14 @@ body{
 .sgrid{display:flex;flex-wrap:wrap;gap:6px}
 .spill{background:var(--navy-3);border:1px solid #2a4272;color:#dbe4f7;border-radius:20px;padding:6px 11px;font-size:12.5px;cursor:pointer}
 
-/* info panel */
 .info{padding:20px 22px 40px;overflow-y:auto;flex:1;background:var(--navy-2);font-size:14px;line-height:1.75;color:#cfdaf0}
 
-/* map */
 .mapcard{width:100%;height:100%;background:#fff;border:1px solid #e2e7f0;border-radius:10px;overflow:hidden;position:relative}
 #map{width:100%;height:100%}
 
+
 /* =========================================================
-   PHONE LAYOUT ONLY (Fixed spacing, visible hamburger & proper swap)
+   MOBILE RESPONSIVE OVERRIDES ONLY (<= 900px)
    ========================================================= */
 @media (max-width:900px){
   html,body{
@@ -164,7 +157,6 @@ body{
   }
   body{overflow-y:auto !important;}
 
-  /* Top bar layout */
   .topbar{height:60px;padding:0 12px;background:var(--navy) !important;}
   .brand{padding:0;gap:8px}
   .brand img{width:34px;height:34px}
@@ -174,7 +166,7 @@ body{
   .live-server-badge{font-size:11px;padding:4px 10px;gap:6px}
   .live-server-badge .live-dot{width:7px;height:7px}
 
-  /* FIXED: Hamburger icon explicitly styled so 3 bars show clearly */
+  /* Hamburger icon fix for mobile */
   .hamburger{
     display:flex !important;
     flex-direction:column !important;
@@ -201,7 +193,6 @@ body{
   #navToggle:checked ~ .tools .hamburger span:nth-child(2){opacity:0 !important;}
   #navToggle:checked ~ .tools .hamburger span:nth-child(3){transform:translateY(-6px) rotate(-45deg) !important;}
 
-  /* Navigation dropdown menu */
   .nav{
     display:flex !important;
     position:fixed !important;
@@ -233,13 +224,9 @@ body{
     background:rgba(226,35,26,.15) !important;
   }
 
-  /* Map option visible in hamburger menu as text data */
   .nav button.map-tab-btn{ display:block !important; }
-  
-  /* Hide heavy SVG map graphic on phone */
   .mapwrap{ display:none !important; }
 
-  /* App layout container */
   .app{
     flex-direction:column !important;
     height:auto !important;
@@ -256,7 +243,6 @@ body{
     padding-bottom:20px !important;
   }
 
-  /* FIXED: Swap button positioned neatly to the right of inputs without blocking text */
   .swap{
     position:absolute !important;
     left:auto !important;
@@ -273,11 +259,10 @@ body{
   }
   .swap:hover{transform:none !important;}
 
-  /* FIXED: Clean balanced spacing for inputs, removing the massive gaps */
   .search{padding:18px 16px 14px; background:var(--navy-2) !important;}
   .search label{font-size:13px;margin-bottom:5px}
   .field{margin-bottom:12px !important;}
-  .field:nth-of-type(1){margin-bottom:28px !important;} /* Space reserved cleanly for swap button */
+  .field:nth-of-type(1){margin-bottom:28px !important;}
   .field:nth-of-type(2){margin-bottom:16px !important;}
   .field input{height:44px;font-size:14px}
   .plan{height:46px;font-size:14.5px;margin-top:4px;}
