@@ -234,24 +234,21 @@ text.pin{font:700 10px Inter,sans-serif;fill:#fff;text-anchor:middle;pointer-eve
 
 /* ---------- mobile adjustments (Strictly requested changes) ---------- */
 @media (max-width:900px){
-  body{overflow:auto}
-  .topbar{height:64px;padding-right:12px}
+  body{overflow:auto; background: var(--navy-2) !important;}
+  .topbar{height:64px;padding-right:12px; background: var(--navy) !important;}
   .brand{padding:0 10px;gap:9px}
   .brand img{width:42px;height:42px}
   .brand h1{font-size:14px}
   
-  /* Hide desktop tools text & desktop navigation on phone */
   .tools{display:none !important}
   .nav{display:none !important}
 
-  /* Show mobile tools container (Green dot + Hamburger icon) */
   .mobile-tools-container{
     display:flex !important;
     align-items:center;
     gap:12px;
   }
 
-  /* Glowing Green Dot for mobile top bar */
   .mobile-server-dot{
     width:9px;
     height:9px;
@@ -260,7 +257,6 @@ text.pin{font:700 10px Inter,sans-serif;fill:#fff;text-anchor:middle;pointer-eve
     box-shadow:0 0 8px var(--emerald);
   }
 
-  /* Hamburger Menu Styling on Phone Top Right */
   .mobile-menu-container{
     position:relative;
   }
@@ -271,7 +267,7 @@ text.pin{font:700 10px Inter,sans-serif;fill:#fff;text-anchor:middle;pointer-eve
     font-size:18px;
     width:36px;
     height:36px;
-    border-radius:6px;
+    border-radius:12px;
     cursor:pointer;
     display:flex;
     align-items:center;
@@ -311,13 +307,12 @@ text.pin{font:700 10px Inter,sans-serif;fill:#fff;text-anchor:middle;pointer-eve
     display:block !important;
   }
 
-  /* Layout adaptation for phone: full screen app & side panel, map completely removed */
-  .app{flex-direction:column;height:auto}
-  .side{width:100%;max-width:100%;height:auto}
+  .app{flex-direction:column;height:auto;background:var(--navy-2) !important;}
+  .side{width:100%;max-width:100%;height:auto;background:var(--navy-2) !important;}
   .mapwrap{display:none !important}
 
-  .stats{gap:8px;padding:0 16px 16px}
+  .stats{gap:8px;padding:0 16px 16px;background:var(--navy-2) !important;}
   .stat b{font-size:17px}
-  .search{padding:16px}
-  .details,.spanel,.info{padding:16px 16px 32px}
+  .search{padding:16px;background:var(--navy-2) !important;}
+  .details,.spanel,.info{padding:16px 16px 32px;background:var(--navy-2) !important;color:var(--text);}
 }
