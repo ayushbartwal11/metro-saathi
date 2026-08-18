@@ -233,8 +233,8 @@ text.pin{font:700 10px Inter,sans-serif;fill:#fff;text-anchor:middle;pointer-eve
 .legend i{width:14px;height:4px;border-radius:2px}
 
 /* =========================================================
-   PHONE LAYOUT ONLY — everything below this line only fires
-   under max-width:900px. Desktop rules above are untouched.
+   PHONE LAYOUT ONLY — Keep Map tab option in hamburger menu,
+   hide heavy SVG map graphic, show only text information panel.
    ========================================================= */
 @media (max-width:900px){
   html,body{
@@ -245,7 +245,7 @@ text.pin{font:700 10px Inter,sans-serif;fill:#fff;text-anchor:middle;pointer-eve
   }
   body{overflow-y:auto !important;}
 
-  /* ---- top bar: compact, no wide gaps ---- */
+  /* Top bar layout */
   .topbar{height:58px;padding:0 12px;background:var(--navy) !important;}
   .brand{padding:0;gap:8px}
   .brand img{width:34px;height:34px}
@@ -255,7 +255,7 @@ text.pin{font:700 10px Inter,sans-serif;fill:#fff;text-anchor:middle;pointer-eve
   .live-server-badge{font-size:11px;padding:5px 9px;gap:6px}
   .live-server-badge .live-dot{width:7px;height:7px}
 
-  /* ---- hamburger icon, right of the live badge, phone only ---- */
+  /* Hamburger menu icon */
   .hamburger{
     display:flex !important;flex-direction:column;justify-content:center;align-items:flex-end;
     gap:4px;width:30px;height:30px;cursor:pointer;flex-shrink:0;
@@ -268,7 +268,7 @@ text.pin{font:700 10px Inter,sans-serif;fill:#fff;text-anchor:middle;pointer-eve
   #navToggle:checked ~ .tools .hamburger span:nth-child(2){opacity:0}
   #navToggle:checked ~ .tools .hamburger span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
 
-  /* ---- nav dropdown options visibility fix (FIXED) ---- */
+  /* Navigation dropdown menu */
   .nav{
     display:flex !important;
     position:fixed !important;
@@ -300,14 +300,13 @@ text.pin{font:700 10px Inter,sans-serif;fill:#fff;text-anchor:middle;pointer-eve
     background:rgba(226,35,26,.15) !important;
   }
 
-  /* Remove the MAP tab entirely — no map on phone */
-  .nav button.map-tab-btn{ display:none !important; }
-  section.panel[data-panel="map"]{ display:none !important; }
-
-  /* ---- remove the map section from phone layout entirely ---- */
+  /* Keep the Map option visible in the hamburger menu */
+  .nav button.map-tab-btn{ display:block !important; }
+  
+  /* Hide the heavy SVG graphic wrapper entirely on mobile */
   .mapwrap{ display:none !important; }
 
-  /* App becomes a single column, no leftover white/paper space */
+  /* App layout container */
   .app{
     flex-direction:column !important;
     height:auto !important;
@@ -324,7 +323,7 @@ text.pin{font:700 10px Inter,sans-serif;fill:#fff;text-anchor:middle;pointer-eve
     padding-bottom:10px !important;
   }
 
-  /* ---- Swap Button alignment fix (shifted right between From and To) ---- */
+  /* Swap button alignment */
   .swap{
     position:absolute !important;
     left:auto !important;
@@ -341,7 +340,7 @@ text.pin{font:700 10px Inter,sans-serif;fill:#fff;text-anchor:middle;pointer-eve
   }
   .swap:hover{transform:none !important;}
 
-  /* ---- tighten spacing / font sizes ---- */
+  /* Spacing and typography adjustments */
   .search{padding:14px 14px 16px; background:var(--navy-2) !important;}
   .search label{font-size:12.5px;margin-bottom:5px}
   .field{margin-bottom:14px}
