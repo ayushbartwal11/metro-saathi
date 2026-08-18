@@ -13,40 +13,29 @@
 <body>
 
 <header class="topbar">
+  <!-- Mobile-only nav toggle (pure CSS checkbox hack, no effect on desktop) -->
+  <input type="checkbox" id="navToggle" class="nav-toggle" />
+
   <div class="brand">
     <img src="logo.png" alt="Delhi Metro Saathi logo" />
     <h1><span class="red">DELHI METRO</span><span class="white">SAATHI</span></h1>
   </div>
-  
-  <nav class="nav">
+
+  <nav class="nav" id="mainNav">
     <button data-tab="planner" class="active">ROUTE PLANNER</button>
     <button data-tab="stations">STATIONS</button>
-    <button data-tab="map">MAP</button>
+    <button data-tab="map" class="map-tab-btn">MAP</button>
     <button data-tab="info">INFO</button>
   </nav>
 
-  <!-- Mobile Tools & Hamburger Menu (Server is Live & Hamburger on the right) -->
-  <div class="mobile-tools-container">
-    <div class="server-dot-wrapper">
-      <span class="server-glowing-dot"></span>
-      <span class="server-tooltip">Server is Live</span>
-    </div>
-
-    <div class="mobile-menu-container">
-      <button id="hamburgerBtn" class="hamburger-btn" aria-label="Menu">&#9776;</button>
-      <div id="mobileDropdown" class="mobile-dropdown-menu">
-        <a href="#" class="mob-nav-link active" data-target="planner">Route Planner</a>
-        <a href="#" class="mob-nav-link" data-target="stations">Stations</a>
-        <a href="#" class="mob-nav-link" data-target="map">Map</a>
-        <a href="#" class="mob-nav-link" data-target="info">Info</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="tools desktop-tools">
+  <div class="tools">
     <div class="live-server-badge">
       <span class="live-dot"></span> Server is Live
     </div>
+    <!-- Hamburger: visible only on phone layout via CSS -->
+    <label for="navToggle" class="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </label>
   </div>
 </header>
 
@@ -148,37 +137,15 @@
       return "<li>" + l.name + " &mdash; " + l.stations.length + " stations</li>";
     }).join("");
 
-    const hamburgerBtn = document.getElementById("hamburgerBtn");
-    const mobileDropdown = document.getElementById("mobileDropdown");
-
-    if (hamburgerBtn && mobileDropdown) {
-      hamburgerBtn.addEventListener("click", function (e) {
-        e.stopPropagation();
-        mobileDropdown.classList.toggle("show-menu");
-      });
-
-      document.addEventListener("click", function () {
-        mobileDropdown.classList.remove("show-menu");
-      });
-
-      const mobLinks = mobileDropdown.querySelectorAll(".mob-nav-link");
-      mobLinks.forEach(function (link) {
-        link.addEventListener("click", function (e) {
-          e.preventDefault();
-          const targetTab = this.getAttribute("data-target");
-
-          mobLinks.forEach(l => l.classList.remove("active"));
-          this.classList.add("active");
-
-          const desktopNavBtn = document.querySelector('.nav button[data-tab="' + targetTab + '"]');
-          if (desktopNavBtn) {
-            desktopNavBtn.click();
-          } else {
-            document.querySelectorAll(".panel").forEach(function(p) { p.classList.remove("show"); });
-            const targetPanel = document.querySelector('.panel[data-panel="' + targetTab + '"]');
-            if (targetPanel) targetPanel.classList.add("show");
-          }
-          mobileDropdown.classList.remove("show-menu");
+    /* Mobile-only: auto-close the hamburger dropdown after a nav tab is tapped.
+       Purely a UX nicety for the phone layout; does nothing on desktop
+       and does not interfere with app.js's own tab-switching logic. */
+    var navToggle = document.getElementById("navToggle");
+    var mainNav = document.getElementById("mainNav");
+    if (navToggle && mainNav) {
+      mainNav.querySelectorAll("button[data-tab]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          navToggle.checked = false;
         });
       });
     }
