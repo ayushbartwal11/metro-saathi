@@ -25,8 +25,7 @@
     <button data-tab="info">INFO</button>
   </nav>
 
-  <!-- Mobile Tools & Hamburger Menu -->
-  <!-- यहाँ मैंने वही classes रखी हैं जो आपके CSS में काम करेंगी -->
+  <!-- Mobile Tools & Hamburger Menu (Server is Live & Hamburger on the right) -->
   <div class="mobile-tools-container">
     <div class="server-dot-wrapper">
       <span class="server-glowing-dot"></span>
@@ -177,7 +176,7 @@
           } else {
             document.querySelectorAll(".panel").forEach(function(p) { p.classList.remove("show"); });
             const targetPanel = document.querySelector('.panel[data-panel="' + targetTab + '"]');
-            if (targetPanel) targetPanel.add("show");
+            if (targetPanel) targetPanel.classList.add("show");
           }
           mobileDropdown.classList.remove("show-menu");
         });
