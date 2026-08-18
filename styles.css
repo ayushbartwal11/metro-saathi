@@ -228,18 +228,20 @@ text.pin{font:700 10px Inter,sans-serif;fill:#fff;text-anchor:middle;pointer-eve
 .legend span{display:flex;align-items:center;gap:6px;font-size:10.5px;color:#3b4a68}
 .legend i{width:14px;height:4px;border-radius:2px}
 
-/* ---------- Mobile ---------- */
+/* ---------- Mobile Optimization (Fixed Full Width & Swap Button) ---------- */
 @media (max-width: 900px) {
-  /* 1. Map ko mobile par puri tarah hide karna aur space free karna */
-  .mapwrap {
-    display: none !important;
+  /* Poore page ko vertical column banana aur white background hatana */
+  body {
+    overflow: auto !important;
+    background: var(--navy) !important;
   }
 
-  /* 2. Side panel ko full-width aur full height dena taaki woh poori screen cover kare */
   .app {
-    flex-direction: column;
-    height: auto;
+    flex-direction: column !important;
+    height: auto !important;
   }
+
+  /* Side panel ko poori screen ki width dena */
   .side {
     width: 100% !important;
     max-width: 100% !important;
@@ -247,45 +249,60 @@ text.pin{font:700 10px Inter,sans-serif;fill:#fff;text-anchor:middle;pointer-eve
     overflow-y: visible !important;
   }
 
-  /* 3. Header / Brand ka size bada karna */
+  /* Map container ko mobile par 100% hide karna taaki white background na dikhe */
+  .mapwrap {
+    display: none !important;
+  }
+
+  /* Header / Brand adjustments */
   .brand h1 {
     font-size: 18px !important;
     line-height: 1.3 !important;
   }
   .brand img {
-    width: 46px !important;
-    height: 46px !important;
+    width: 44px !important;
+    height: 44px !important;
   }
 
-  /* 4. 'From' aur 'To' station text / input fields ko bada karna */
+  /* Search fields aur inputs */
+  .search {
+    padding: 20px 16px !important;
+  }
   .search label {
-    font-size: 16px !important;
+    font-size: 15px !important;
     font-weight: 700 !important;
   }
   .field input {
-    height: 52px !important;
-    font-size: 16px !important;
+    height: 50px !important;
+    font-size: 15px !important;
     padding-left: 42px !important;
   }
+
+  /* Swap button ki sahi positioning taaki woh inputs ke beech mein overlap na kare */
   .swap {
-    top: 112px !important;
-    width: 44px !important;
-    height: 44px !important;
-    font-size: 18px !important;
+    position: absolute !important;
+    right: 24px !important;
+    left: auto !important;
+    top: 92px !important;
+    transform: none !important;
+    width: 38px !important;
+    height: 38px !important;
+    font-size: 15px !important;
   }
 
-  /* 5. 'Plan Route' button ka size aur text bada karna */
+  /* Plan Route button */
   .plan {
-    height: 54px !important;
-    font-size: 17px !important;
+    height: 52px !important;
+    font-size: 16px !important;
     font-weight: 800 !important;
   }
 
-  /* 6. Route details aur stations list ko clean aur readable banana */
+  /* Route details aur text */
   #routeTitle {
-    font-size: 20px !important;
+    font-size: 18px !important;
   }
   .details {
-    font-size: 15px !important;
+    padding: 16px !important;
+    font-size: 14px !important;
   }
 }
