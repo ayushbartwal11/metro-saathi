@@ -228,45 +228,64 @@ text.pin{font:700 10px Inter,sans-serif;fill:#fff;text-anchor:middle;pointer-eve
 .legend span{display:flex;align-items:center;gap:6px;font-size:10.5px;color:#3b4a68}
 .legend i{width:14px;height:4px;border-radius:2px}
 
-/* ---------- Mobile Optimization (Safe Updates) ---------- */
+/* ---------- Mobile Only Layout Overhaul (Pure CSS) ---------- */
 @media (max-width: 900px) {
-  body { overflow: auto; }
-  .topbar { height: 60px; padding-right: 8px; }
-  .brand { padding: 0 8px; gap: 8px; }
-  .brand img { width: 38px; height: 38px; }
-  .brand h1 { font-size: 13px; line-height: 1.2; }
-  
-  .nav { overflow-x: auto; scrollbar-width: none; }
-  .nav::-webkit-scrollbar { display: none; }
-  .nav button { padding: 0 10px; font-size: 11.5px; white-space: nowrap; }
-  
-  .app { flex-direction: column; height: auto; }
-  .side { width: 100%; max-width: 100%; height: auto; }
-  .mapwrap { height: 60vh; padding: 8px; }
-  
-  .search { padding: 14px; }
-  .field { margin-bottom: 16px; }
-  .field:nth-of-type(1) { margin-bottom: 28px; }
-  
-  /* Swap button positioning for mobile safety */
-  .swap {
-    top: 96px;
-    width: 36px;
-    height: 36px;
-    font-size: 14px;
+  /* 1. Map ko mobile par puri tarah hide karna aur space free karna */
+  .mapwrap {
+    display: none !important;
   }
-  
-  .stats { gap: 6px; padding: 0 14px 14px; }
-  .stat { padding: 10px; }
-  .stat b { font-size: 16px; }
-  
-  .details, .spanel, .info { padding: 14px 14px 28px; }
-  #routeTitle { font-size: 17px; margin: 4px 0 12px; }
-  
-  .leg { padding-left: 10px; margin-bottom: 12px; }
-  .leg-head { gap: 6px; }
-  .chip { font-size: 11px; padding: 2px 7px; }
-  
-  .legend { max-width: 85%; padding: 6px 8px; }
-  .legend span { font-size: 9.5px; gap: 4px; }
+
+  /* 2. Side panel ko full-width aur full height dena taaki woh poori screen cover kare */
+  .app {
+    flex-direction: column;
+    height: auto;
+  }
+  .side {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    overflow-y: visible !important;
+  }
+
+  /* 3. Header / Brand ka size bada karna */
+  .brand h1 {
+    font-size: 18px !important;
+    line-height: 1.3 !important;
+  }
+  .brand img {
+    width: 46px !important;
+    height: 46px !important;
+  }
+
+  /* 4. 'From' aur 'To' station text / input fields ko bada karna */
+  .search label {
+    font-size: 16px !important;
+    font-weight: 700 !important;
+  }
+  .field input {
+    height: 52px !important;
+    font-size: 16px !important;
+    padding-left: 42px !important;
+  }
+  .swap {
+    top: 112px !important;
+    width: 44px !important;
+    height: 44px !important;
+    font-size: 18px !important;
+  }
+
+  /* 5. 'Plan Route' button ka size aur text bada karna */
+  .plan {
+    height: 54px !important;
+    font-size: 17px !important;
+    font-weight: 800 !important;
+  }
+
+  /* 6. Route details aur stations list ko clean aur readable banana */
+  #routeTitle {
+    font-size: 20px !important;
+  }
+  .details {
+    font-size: 15px !important;
+  }
 }
