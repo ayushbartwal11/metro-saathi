@@ -37,16 +37,17 @@ body{
 .nav button:hover{color:#fff}
 .nav button.active{color:#fff;border-bottom-color:var(--lava)}
 
-/* ---------- live server badge & animation ---------- */
+/* ---------- live server badge (Desktop) ---------- */
 .tools{display:flex;align-items:center;gap:14px;}
 .live-server-badge{
   display:inline-flex;align-items:center;gap:8px;
   background:rgba(16, 185, 129, 0.12);
   border:1px solid rgba(16, 185, 129, 0.4);
-  color:#34d399;font-weight:600;font-size:13.5px;
+  color:#34d399 !important;font-weight:600;font-size:13.5px;
   padding:6px 14px;border-radius:20px;
   box-shadow:0 0 12px rgba(16, 185, 129, 0.2);
 }
+.live-server-badge span { color: #34d399 !important; }
 .live-dot{
   width:9px;height:9px;background:var(--emerald);border-radius:50%;
   box-shadow:0 0 8px var(--emerald);
@@ -83,7 +84,7 @@ body{
 }
 .field input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(13,92,192,.25)}
 
-/* ---------- Swap Button ---------- */
+/* ---------- Swap Button (Desktop) ---------- */
 .swap{
   position:absolute;
   left:50%;
@@ -104,14 +105,6 @@ body{
   box-shadow:0 6px 18px rgba(13,92,192,0.45);
   transform: translateX(-50%) scale(1.1);
 }
-.swap:hover svg, .swap:hover i {
-  animation: swapArrowsVerticalSplit 0.7s infinite alternate ease-in-out;
-}
-@keyframes swapArrowsVerticalSplit {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-4px); }
-  100% { transform: translateY(4px); }
-}
 
 /* ---------- Plan Route Button Animation ---------- */
 .plan{
@@ -121,7 +114,6 @@ body{
   position: relative; overflow: hidden;
   box-shadow: 0 4px 15px rgba(13, 92, 192, 0.4);
   animation: planShimmerAndPulse 3s infinite ease-in-out;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 .plan::after {
   content: '';
@@ -130,10 +122,6 @@ body{
   background: linear-gradient(60deg, transparent, rgba(255,255,255,0.25), transparent);
   transform: rotate(30deg) translateX(-100%);
   animation: planGlint 3.5s infinite linear;
-}
-.plan:hover{
-  transform: translateY(-2px);
-  box-shadow: 0 6px 22px rgba(13, 92, 192, 0.6);
 }
 @keyframes planShimmerAndPulse {
   0% { box-shadow: 0 0 0 0 rgba(13, 92, 192, 0.6); }
@@ -154,8 +142,6 @@ body{
 .ac li:hover,.ac li.active{background:#eef3fd}
 .ac-name{font-size:14px;font-weight:600}
 .ac-sub{font-size:11px;color:#6b7a99}
-.ac-dots{display:flex;gap:4px;margin-top:3px}
-.ac-dots i{width:16px;height:4px;border-radius:2px}
 
 /* stats */
 .stats{display:none;gap:12px;padding:0 22px 20px}
@@ -167,71 +153,14 @@ body{
 /* details */
 .details{flex:1;overflow-y:auto;padding:18px 22px 40px;background:var(--navy-2);border-top:1px solid var(--line)}
 .details h3{font-size:14px;letter-spacing:1.4px;color:#fff;text-transform:uppercase}
-.details h3 small{color:var(--muted);text-transform:none;letter-spacing:0;font-weight:500}
 #routeTitle{font-size:19px;font-weight:700;color:#fff;margin:6px 0 16px}
 .hint{color:var(--muted);font-size:14px;line-height:1.6}
 
-.leg{border-left:4px solid var(--lc);padding:2px 0 2px 14px;margin:0 0 14px}
-.leg-head{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
-.chip{font-size:12px;font-weight:700;color:#0b1526;padding:3px 9px;border-radius:20px}
-.chip.sm{font-size:11px}
-.leg-num{font-size:12px;color:var(--muted)}
-.leg-count{font-size:12px;color:#cbd6ee;margin-left:auto}
-.leg-body{margin-top:8px;font-size:14px;color:#dae3f7;display:flex;flex-direction:column;gap:6px}
-.leg-body b{color:#fff;font-weight:600}
-.leg-body .row{display:flex;align-items:center;flex-wrap:wrap;gap:6px}
-.pf{font-size:11px;background:#22365c;border-radius:5px;padding:2px 7px;margin-left:6px;color:#bcd0f5}
-.leg-body details summary{cursor:pointer;font-size:12px;color:#8fb4f5;outline:none}
-.stops{margin:8px 0 4px 18px;font-size:13px;color:#b6c4e2;display:grid;gap:3px}
-.change{background:#1a2a49;border:1px dashed #3a5488;border-radius:8px;padding:10px 12px;
-  font-size:13.5px;color:#dbe5fa;margin:0 0 14px}
-.arrive{background:#12321f;border:1px solid #2b6a44;border-radius:8px;padding:11px 13px;
-  font-size:13.5px;color:#c9f2d9;margin-top:6px}
-
-/* stations panel */
-.spanel{padding:18px 22px 40px;overflow-y:auto;flex:1;background:var(--navy-2)}
-#stationSearch{width:100%;height:42px;border-radius:8px;border:1px solid #d5dcea;padding:0 14px;
-  font-size:14px;margin-bottom:16px;outline:none}
-.sline{margin-bottom:20px}
-.sline h4{font-size:14px;color:#fff;display:flex;align-items:center;gap:8px;margin-bottom:9px}
-.sline h4 i{width:14px;height:14px;border-radius:4px}
-.sline h4 small{color:var(--muted);font-weight:500}
-.sgrid{display:flex;flex-wrap:wrap;gap:6px}
-.spill{background:var(--navy-3);border:1px solid #2a4272;color:#dbe4f7;border-radius:20px;
-  padding:6px 11px;font-size:12.5px;cursor:pointer}
-.spill:hover{background:#22406e;border-color:#4a70b8}
-.spill em{font-style:normal;color:#8fb4f5}
-
-/* info panel */
-.info{padding:20px 22px 40px;overflow-y:auto;flex:1;background:var(--navy-2);font-size:14px;line-height:1.75;color:#cfdaf0}
-.info h4{color:#fff;margin:16px 0 6px;font-size:15px}
-.info ul{margin-left:18px}
-
 /* map */
-.mapcard{width:100%;height:100%;background:#fff;border:1px solid #e2e7f0;border-radius:10px;
-  overflow:hidden;position:relative;box-shadow:0 2px 10px rgba(15,30,60,.06)}
-#map{width:100%;height:100%;touch-action:none;cursor:grab;background:
-  linear-gradient(#eef2f8 1px,transparent 1px) 0 0/56px 56px,
-  linear-gradient(90deg,#eef2f8 1px,transparent 1px) 0 0/56px 56px,#fff}
-#map:active{cursor:grabbing}
-.lbl{font:500 8.5px Inter,sans-serif;fill:#3b4a68;pointer-events:none}
-.lbl.on{font-weight:700;fill:#0b1526}
-.pinlbl{font-size:11px;font-weight:800;fill:#0b1526}
-text.pin{font:700 10px Inter,sans-serif;fill:#fff;text-anchor:middle;pointer-events:none}
-.st{cursor:pointer}
-.route-glow{filter:drop-shadow(0 0 6px rgba(226,35,26,.45))}
-.maptitle{position:absolute;right:12px;bottom:12px;background:var(--navy);color:#fff;font-size:11.5px;
-  padding:5px 10px;border-radius:5px;letter-spacing:.3px}
-.mapctl{position:absolute;right:12px;top:12px;display:flex;flex-direction:column;gap:6px}
-.mapctl button{width:34px;height:34px;border-radius:7px;border:1px solid #dbe2ee;background:#fff;
-  cursor:pointer;font-size:15px;color:#12203a;box-shadow:0 2px 6px rgba(0,0,0,.08)}
-.mapctl button:hover{background:#eef3fd}
-.legend{position:absolute;left:12px;bottom:12px;background:rgba(255,255,255,.94);border:1px solid #e2e7f0;
-  border-radius:8px;padding:9px 11px;display:flex;flex-wrap:wrap;gap:6px 12px;max-width:60%}
-.legend span{display:flex;align-items:center;gap:6px;font-size:10.5px;color:#3b4a68}
-.legend i{width:14px;height:4px;border-radius:2px}
+.mapcard{width:100%;height:100%;background:#fff;border:1px solid #e2e7f0;border-radius:10px;position:relative}
+#map{width:100%;height:100%;background:#fff}
 
-/* ---------- mobile adjustments ---------- */
+/* ---------- MOBILE FIXES (DIRECTLY TARGETING YOUR LIVE HTML) ---------- */
 @media (max-width:900px){
   body{overflow:auto; background: var(--navy-2) !important;}
   .topbar{height:64px;padding-right:12px; background: var(--navy) !important;}
@@ -239,96 +168,48 @@ text.pin{font:700 10px Inter,sans-serif;fill:#fff;text-anchor:middle;pointer-eve
   .brand img{width:42px;height:42px}
   .brand h1{font-size:14px}
   
-  /* Hide desktop tools and nav */
-  .tools{display:none !important}
-  .nav{display:none !important}
-
-  /* Show mobile tools container with glowing emerald green server badge and hamburger menu */
-  .mobile-tools-container{
-    display:flex !important;
-    align-items:center;
-    gap:12px;
+  /* 1. FORCE "SERVER IS LIVE" TO GLOW GREEN ON MOBILE */
+  .tools{
+    display: flex !important;
+    gap: 0px !important;
+  }
+  .tools .nav { display: none !important; }
+  .live-server-badge{
+    background: rgba(16, 185, 129, 0.15) !important;
+    border: 1px solid rgba(16, 185, 129, 0.5) !important;
+    color: #34d399 !important;
+    padding: 4px 10px !important;
+    border-radius: 16px !important;
+    font-size: 11.5px !important;
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.3) !important;
+  }
+  .live-server-badge span, .tools span {
+    color: #34d399 !important;
   }
 
-  .mobile-server-badge{
-    display:inline-flex;
-    align-items:center;
-    gap:6px;
-    background:rgba(16, 185, 129, 0.12);
-    border:1px solid rgba(16, 185, 129, 0.4);
-    color:#34d399;
-    font-weight:600;
-    font-size:12px;
-    padding:4px 10px;
-    border-radius:16px;
-    box-shadow:0 0 10px rgba(16, 185, 129, 0.2);
-  }
-
-  .mobile-server-dot{
-    width:8px;
-    height:8px;
-    background:var(--emerald);
-    border-radius:50%;
-    box-shadow:0 0 10px var(--emerald);
-    animation: livePulse 2s infinite ease-in-out;
-  }
-
-  .mobile-menu-container{
-    position:relative;
-  }
-  
-  .hamburger-btn{
-    background:var(--navy-2);
-    color:#fff;
-    border:1px solid var(--line);
-    font-size:18px;
-    width:36px;
-    height:36px;
-    border-radius:12px;
-    cursor:pointer;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-  }
-  
-  .mobile-dropdown-menu{
-    display:none;
-    position:absolute;
-    right:0;
-    top:44px;
-    background:var(--navy-2);
-    border:1px solid var(--line);
-    border-radius:8px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.5);
-    width:165px;
-    overflow:hidden;
-    z-index:1001;
-  }
-  .mobile-dropdown-menu a{
-    display:block;
-    padding:10px 14px;
-    color:#fff;
-    text-decoration:none;
-    font-size:14px;
-    font-weight:500;
-    border-bottom:1px solid rgba(255,255,255,0.05);
-  }
-  .mobile-dropdown-menu a:hover{
-    background:rgba(255,255,255,0.05);
-  }
-  .mobile-dropdown-menu a.active{
-    background:var(--blue) !important;
-    color:#fff !important;
-    font-weight:700;
-  }
-  .mobile-dropdown-menu.show-menu{
-    display:block !important;
-  }
-
-  /* Layout and Background Optimization for Mobile */
+  /* Layout adjustments */
   .app{flex-direction:column;height:auto;background:var(--navy-2) !important;}
   .side{width:100%;max-width:100%;height:auto;background:var(--navy-2) !important;}
   .mapwrap{display:none !important}
+
+  /* 2. SWAP BUTTON: BETWEEN FROM & TO, SHIFTED TO RIGHT WITH GAP */
+  .swap{
+    position: absolute !important;
+    left: auto !important;
+    right: 28px !important;
+    top: 93px !important;
+    transform: none !important;
+    width: 38px !important;
+    height: 38px !important;
+    border-radius: 50% !important;
+    background: linear-gradient(135deg, #ffffff, #eef3fd) !important;
+    border: 1.5px solid #cbd5e1 !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
+    z-index: 10 !important;
+  }
+  .swap:hover {
+    transform: none !important;
+  }
 
   .stats{gap:8px;padding:0 16px 16px;background:var(--navy-2) !important;}
   .stat b{font-size:17px}
