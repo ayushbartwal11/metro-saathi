@@ -14,9 +14,10 @@
 
 <header class="topbar">
   <div class="brand">
-    <img src="logo.png" alt="Delhi Metro Saathi logo" />
+    <img src="logo.png" alt="Delhi Metro Saathi logo" class="brand-logo" />
     <h1><span class="red">DELHI METRO</span><span class="white">साथी</span></h1>
   </div>
+  
   <nav class="nav">
     <button data-tab="planner" class="active">ROUTE PLANNER</button>
     <button data-tab="stations">STATIONS</button>
@@ -24,18 +25,25 @@
     <button data-tab="info">INFO</button>
   </nav>
 
-  <!-- Mobile Hamburger Menu Container -->
-  <div class="mobile-menu-container">
-    <button id="hamburgerBtn" class="hamburger-btn" aria-label="Menu">&#9776;</button>
-    <div id="mobileDropdown" class="mobile-dropdown-menu">
-      <a href="#" class="mob-nav-link" data-target="planner">Route Planner</a>
-      <a href="#" class="mob-nav-link" data-target="stations">Stations</a>
-      <a href="#" class="mob-nav-link" data-target="map">Map</a>
-      <a href="#" class="mob-nav-link" data-target="info">Info</a>
+  <!-- Mobile Tools & Hamburger Menu -->
+  <div class="mobile-tools-container">
+    <div class="server-dot-wrapper" title="Server is Live">
+      <span class="server-glowing-dot"></span>
+      <span class="server-tooltip">Server is Live</span>
+    </div>
+
+    <div class="mobile-menu-container">
+      <button id="hamburgerBtn" class="hamburger-btn" aria-label="Menu">&#9776;</button>
+      <div id="mobileDropdown" class="mobile-dropdown-menu">
+        <a href="#" class="mob-nav-link active" data-target="planner">Route Planner</a>
+        <a href="#" class="mob-nav-link" data-target="stations">Stations</a>
+        <a href="#" class="mob-nav-link" data-target="map">Map</a>
+        <a href="#" class="mob-nav-link" data-target="info">Info</a>
+      </div>
     </div>
   </div>
 
-  <div class="tools">
+  <div class="tools desktop-tools">
     <div class="live-server-badge">
       <span class="live-dot"></span> Server is Live
     </div>
@@ -140,7 +148,6 @@
       return "<li>" + l.name + " &mdash; " + l.stations.length + " stations</li>";
     }).join("");
 
-    // Mobile Hamburger Menu & Tab Switching Script Integration
     const hamburgerBtn = document.getElementById("hamburgerBtn");
     const mobileDropdown = document.getElementById("mobileDropdown");
 
@@ -154,19 +161,19 @@
         mobileDropdown.classList.remove("show-menu");
       });
 
-      // Handle click on dropdown options to match with main app tab switching logic
       const mobLinks = mobileDropdown.querySelectorAll(".mob-nav-link");
       mobLinks.forEach(function (link) {
         link.addEventListener("click", function (e) {
           e.preventDefault();
           const targetTab = this.getAttribute("data-target");
-          
-          // Trigger click on corresponding desktop nav button if available, or toggle panels directly
+
+          mobLinks.forEach(l => l.classList.remove("active"));
+          this.classList.add("active");
+
           const desktopNavBtn = document.querySelector('.nav button[data-tab="' + targetTab + '"]');
           if (desktopNavBtn) {
             desktopNavBtn.click();
           } else {
-            // Fallback manual panel show/hide if needed
             document.querySelectorAll(".panel").forEach(function(p) { p.classList.remove("show"); });
             const targetPanel = document.querySelector('.panel[data-panel="' + targetTab + '"]');
             if (targetPanel) targetPanel.classList.add("show");
