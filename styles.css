@@ -242,7 +242,7 @@ text.pin{font:700 10px Inter,sans-serif;fill:#fff;text-anchor:middle;pointer-eve
   .tools{display:none !important}
   .nav{display:none !important}
 
-  /* Show mobile tools container with glowing green server badge and hamburger menu */
+  /* Show mobile tools container with glowing emerald green server badge and hamburger menu */
   .mobile-tools-container{
     display:flex !important;
     align-items:center;
@@ -268,7 +268,7 @@ text.pin{font:700 10px Inter,sans-serif;fill:#fff;text-anchor:middle;pointer-eve
     height:8px;
     background:var(--emerald);
     border-radius:50%;
-    box-shadow:0 0 8px var(--emerald);
+    box-shadow:0 0 10px var(--emerald);
     animation: livePulse 2s infinite ease-in-out;
   }
 
