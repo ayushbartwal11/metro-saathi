@@ -233,8 +233,8 @@ text.pin{font:700 10px Inter,sans-serif;fill:#fff;text-anchor:middle;pointer-eve
 .legend i{width:14px;height:4px;border-radius:2px}
 
 /* =========================================================
-   PHONE LAYOUT ONLY — Keep Map tab option in hamburger menu,
-   hide heavy SVG map graphic, show only text information panel.
+   PHONE LAYOUT ONLY — Compact spacing, proper hamburger,
+   text-only map line option.
    ========================================================= */
 @media (max-width:900px){
   html,body{
@@ -246,33 +246,34 @@ text.pin{font:700 10px Inter,sans-serif;fill:#fff;text-anchor:middle;pointer-eve
   body{overflow-y:auto !important;}
 
   /* Top bar layout */
-  .topbar{height:58px;padding:0 12px;background:var(--navy) !important;}
-  .brand{padding:0;gap:8px}
-  .brand img{width:34px;height:34px}
-  .brand h1{font-size:12.5px;letter-spacing:.2px;line-height:1.05}
+  .topbar{height:54px;padding:0 8px;background:var(--navy) !important;}
+  .brand{padding:0;gap:6px}
+  .brand img{width:28px;height:28px}
+  .brand h1{font-size:11px;letter-spacing:0px;line-height:1}
 
-  .tools{gap:8px}
-  .live-server-badge{font-size:11px;padding:5px 9px;gap:6px}
-  .live-server-badge .live-dot{width:7px;height:7px}
+  .tools{gap:6px;align-items:center;}
+  .live-server-badge{font-size:9.5px;padding:3px 7px;gap:4px}
+  .live-server-badge .live-dot{width:5px;height:5px}
 
   /* Hamburger menu icon */
   .hamburger{
-    display:flex !important;flex-direction:column;justify-content:center;align-items:flex-end;
-    gap:4px;width:30px;height:30px;cursor:pointer;flex-shrink:0;
+    display:flex !important;flex-direction:column;justify-content:center;align-items:center;
+    gap:3px;width:30px;height:30px;cursor:pointer;flex-shrink:0;
+    background:rgba(255,255,255,0.08);border-radius:5px;padding:3px;
   }
   .hamburger span{
-    display:block;width:22px;height:2px;background:#fff;border-radius:2px;
+    display:block;width:18px;height:2px;background:#fff;border-radius:2px;
     transition:transform .25s ease, opacity .25s ease;
   }
-  #navToggle:checked ~ .tools .hamburger span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+  #navToggle:checked ~ .tools .hamburger span:nth-child(1){transform:translateY(5px) rotate(45deg)}
   #navToggle:checked ~ .tools .hamburger span:nth-child(2){opacity:0}
-  #navToggle:checked ~ .tools .hamburger span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+  #navToggle:checked ~ .tools .hamburger span:nth-child(3){transform:translateY(-5px) rotate(-45deg)}
 
   /* Navigation dropdown menu */
   .nav{
     display:flex !important;
     position:fixed !important;
-    top:58px !important;left:0 !important;right:0 !important;
+    top:54px !important;left:0 !important;right:0 !important;
     flex-direction:column !important;
     align-items:stretch !important;
     height:auto !important;
@@ -283,13 +284,13 @@ text.pin{font:700 10px Inter,sans-serif;fill:#fff;text-anchor:middle;pointer-eve
     z-index:99999 !important;
     transition:max-height .28s ease !important;
   }
-  #navToggle:checked ~ .nav{ max-height:350px !important; }
+  #navToggle:checked ~ .nav{ max-height:320px !important; }
 
   .nav button{
     text-align:left !important;
-    padding:14px 18px !important;
-    font-size:13.5px !important;
-    letter-spacing:.5px !important;
+    padding:12px 16px !important;
+    font-size:13px !important;
+    letter-spacing:.4px !important;
     border-bottom:1px solid rgba(255,255,255,.06) !important;
     border-left:3px solid transparent !important;
     color:var(--text) !important;
@@ -300,17 +301,17 @@ text.pin{font:700 10px Inter,sans-serif;fill:#fff;text-anchor:middle;pointer-eve
     background:rgba(226,35,26,.15) !important;
   }
 
-  /* Keep the Map option visible in the hamburger menu */
+  /* Map option visible in hamburger menu */
   .nav button.map-tab-btn{ display:block !important; }
   
-  /* Hide the heavy SVG graphic wrapper entirely on mobile */
+  /* Hide heavy SVG map graphic on phone */
   .mapwrap{ display:none !important; }
 
   /* App layout container */
   .app{
     flex-direction:column !important;
     height:auto !important;
-    min-height:calc(100vh - 58px) !important;
+    min-height:calc(100vh - 54px) !important;
     background:var(--navy-2) !important;
     overflow:visible !important;
   }
@@ -327,44 +328,44 @@ text.pin{font:700 10px Inter,sans-serif;fill:#fff;text-anchor:middle;pointer-eve
   .swap{
     position:absolute !important;
     left:auto !important;
-    right:20px !important;
-    top:98px !important;
+    right:16px !important;
+    top:74px !important;
     transform:none !important;
-    width:36px !important;
-    height:36px !important;
+    width:34px !important;
+    height:34px !important;
     border-radius:50% !important;
     background:linear-gradient(135deg, #ffffff, #eef3fd) !important;
     border:1.5px solid #cbd5e1 !important;
-    box-shadow:0 4px 12px rgba(0,0,0,0.25) !important;
+    box-shadow:0 4px 10px rgba(0,0,0,0.2) !important;
     z-index:10 !important;
   }
   .swap:hover{transform:none !important;}
 
-  /* Spacing and typography adjustments */
-  .search{padding:14px 14px 16px; background:var(--navy-2) !important;}
-  .search label{font-size:12.5px;margin-bottom:5px}
-  .field{margin-bottom:14px}
-  .field:nth-of-type(1){margin-bottom:30px}
-  .field:nth-of-type(2){margin-bottom:16px}
-  .field input{height:42px;font-size:13.5px}
-  .plan{height:44px;font-size:14px}
+  /* Strict compact spacing for search inputs & gaps */
+  .search{padding:12px 12px 10px; background:var(--navy-2) !important;}
+  .search label{font-size:11.5px;margin-bottom:3px}
+  .field{margin-bottom:10px !important;}
+  .field:nth-of-type(1){margin-bottom:24px !important;}
+  .field:nth-of-type(2){margin-bottom:12px !important;}
+  .field input{height:38px;font-size:13px}
+  .plan{height:40px;font-size:13.5px}
 
-  .stats{gap:8px;padding:0 14px 14px; background:var(--navy-2) !important;}
-  .stat{padding:10px 11px}
-  .stat span{font-size:11px}
-  .stat b{font-size:16px}
+  .stats{gap:6px;padding:0 12px 10px; background:var(--navy-2) !important;}
+  .stat{padding:8px 10px}
+  .stat span{font-size:10.5px}
+  .stat b{font-size:15px}
 
   .details,.spanel,.info{
-    padding:14px 14px 20px !important;
+    padding:12px 12px 16px !important;
     background:var(--navy-2) !important;
     color:var(--text) !important;
   }
-  .details h3{font-size:12.5px}
-  #routeTitle{font-size:16px;margin:5px 0 12px}
-  .hint{font-size:13px}
+  .details h3{font-size:12px}
+  #routeTitle{font-size:15px;margin:4px 0 10px}
+  .hint{font-size:12.5px}
 
-  .info{font-size:13px;line-height:1.65}
-  .info h4{font-size:14px;margin:14px 0 5px}
+  .info{font-size:12.5px;line-height:1.6}
+  .info h4{font-size:13.5px;margin:12px 0 4px}
 
-  #stationSearch{height:40px;font-size:13.5px;margin-bottom:12px}
+  #stationSearch{height:36px;font-size:13px;margin-bottom:10px}
 }
