@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>DELHI METRO SAATHI — Route Planner, Fare & Network Map</title>
+<title>DELHI METRO साथी — Route Planner, Fare & Network Map</title>
 <meta name="description" content="Plan Delhi Metro routes across all lines and stations with fare, travel time, interchanges and an interactive network map." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -15,7 +15,7 @@
 <header class="topbar">
   <div class="brand">
     <img src="logo.png" alt="Delhi Metro Saathi logo" />
-    <h1><span class="red">DELHI METRO</span><span class="white">SAATHI</span></h1>
+    <h1><span class="red">DELHI METRO</span><span class="white">साथी</span></h1>
   </div>
   <nav class="nav">
     <button data-tab="planner" class="active">ROUTE PLANNER</button>
@@ -23,6 +23,18 @@
     <button data-tab="map">MAP</button>
     <button data-tab="info">INFO</button>
   </nav>
+
+  <!-- Mobile Hamburger Menu Container -->
+  <div class="mobile-menu-container">
+    <button id="hamburgerBtn" class="hamburger-btn" aria-label="Menu">&#9776;</button>
+    <div id="mobileDropdown" class="mobile-dropdown-menu">
+      <a href="#" class="mob-nav-link" data-target="planner">Route Planner</a>
+      <a href="#" class="mob-nav-link" data-target="stations">Stations</a>
+      <a href="#" class="mob-nav-link" data-target="map">Map</a>
+      <a href="#" class="mob-nav-link" data-target="info">Info</a>
+    </div>
+  </div>
+
   <div class="tools">
     <div class="live-server-badge">
       <span class="live-dot"></span> Server is Live
@@ -127,6 +139,42 @@
     document.getElementById("lineLegendList").innerHTML = LINES.map(function (l) {
       return "<li>" + l.name + " &mdash; " + l.stations.length + " stations</li>";
     }).join("");
+
+    // Mobile Hamburger Menu & Tab Switching Script Integration
+    const hamburgerBtn = document.getElementById("hamburgerBtn");
+    const mobileDropdown = document.getElementById("mobileDropdown");
+
+    if (hamburgerBtn && mobileDropdown) {
+      hamburgerBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        mobileDropdown.classList.toggle("show-menu");
+      });
+
+      document.addEventListener("click", function () {
+        mobileDropdown.classList.remove("show-menu");
+      });
+
+      // Handle click on dropdown options to match with main app tab switching logic
+      const mobLinks = mobileDropdown.querySelectorAll(".mob-nav-link");
+      mobLinks.forEach(function (link) {
+        link.addEventListener("click", function (e) {
+          e.preventDefault();
+          const targetTab = this.getAttribute("data-target");
+          
+          // Trigger click on corresponding desktop nav button if available, or toggle panels directly
+          const desktopNavBtn = document.querySelector('.nav button[data-tab="' + targetTab + '"]');
+          if (desktopNavBtn) {
+            desktopNavBtn.click();
+          } else {
+            // Fallback manual panel show/hide if needed
+            document.querySelectorAll(".panel").forEach(function(p) { p.classList.remove("show"); });
+            const targetPanel = document.querySelector('.panel[data-panel="' + targetTab + '"]');
+            if (targetPanel) targetPanel.classList.add("show");
+          }
+          mobileDropdown.classList.remove("show-menu");
+        });
+      });
+    }
   });
 </script>
 </body>
