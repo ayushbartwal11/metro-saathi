@@ -228,22 +228,45 @@ text.pin{font:700 10px Inter,sans-serif;fill:#fff;text-anchor:middle;pointer-eve
 .legend span{display:flex;align-items:center;gap:6px;font-size:10.5px;color:#3b4a68}
 .legend i{width:14px;height:4px;border-radius:2px}
 
-/* ---------- mobile ---------- */
-@media (max-width:900px){
-  body{overflow:auto}
-  .topbar{height:64px;padding-right:12px}
-  .brand{padding:0 10px;gap:9px}
-  .brand img{width:42px;height:42px}
-  .brand h1{font-size:14px}
-  .nav{overflow-x:auto;scrollbar-width:none}
-  .nav::-webkit-scrollbar{display:none}
-  .nav button{padding:0 11px;font-size:12px}
-  .app{flex-direction:column;height:auto}
-  .side{width:100%;max-width:100%}
-  .mapwrap{height:70vh;padding:10px}
-  .stats{gap:8px;padding:0 16px 16px}
-  .stat b{font-size:17px}
-  .search{padding:16px}
-  .details,.spanel,.info{padding:16px 16px 32px}
-  .legend{max-width:78%}
+/* ---------- Mobile Optimization (Safe Updates) ---------- */
+@media (max-width: 900px) {
+  body { overflow: auto; }
+  .topbar { height: 60px; padding-right: 8px; }
+  .brand { padding: 0 8px; gap: 8px; }
+  .brand img { width: 38px; height: 38px; }
+  .brand h1 { font-size: 13px; line-height: 1.2; }
+  
+  .nav { overflow-x: auto; scrollbar-width: none; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav button { padding: 0 10px; font-size: 11.5px; white-space: nowrap; }
+  
+  .app { flex-direction: column; height: auto; }
+  .side { width: 100%; max-width: 100%; height: auto; }
+  .mapwrap { height: 60vh; padding: 8px; }
+  
+  .search { padding: 14px; }
+  .field { margin-bottom: 16px; }
+  .field:nth-of-type(1) { margin-bottom: 28px; }
+  
+  /* Swap button positioning for mobile safety */
+  .swap {
+    top: 96px;
+    width: 36px;
+    height: 36px;
+    font-size: 14px;
+  }
+  
+  .stats { gap: 6px; padding: 0 14px 14px; }
+  .stat { padding: 10px; }
+  .stat b { font-size: 16px; }
+  
+  .details, .spanel, .info { padding: 14px 14px 28px; }
+  #routeTitle { font-size: 17px; margin: 4px 0 12px; }
+  
+  .leg { padding-left: 10px; margin-bottom: 12px; }
+  .leg-head { gap: 6px; }
+  .chip { font-size: 11px; padding: 2px 7px; }
+  
+  .legend { max-width: 85%; padding: 6px 8px; }
+  .legend span { font-size: 9.5px; gap: 4px; }
 }
