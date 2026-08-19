@@ -98,7 +98,7 @@ body{
 }
 .field input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(13,92,192,.25)}
 
-/* ---------- Swap Button ---------- */
+/* ---------- Swap Button (Desktop - untouched) ---------- */
 .swap{
   position:absolute;
   left:50%;
@@ -282,12 +282,23 @@ text.pin{font:700 10px Inter,sans-serif;fill:#fff;text-anchor:middle;pointer-eve
   .stat b{font-size:17px}
 
   /* From / To fields: centered, proportionate, no manual zoom needed */
-  .search{padding:18px 16px 20px;max-width:480px;margin:0 auto}
+  .search{padding:18px 16px 20px;max-width:480px;margin:0 auto;position:relative;}
   .field{width:100%}
   .field input{
     width:100%;height:46px;font-size:16px;box-sizing:border-box;
   }
-  .swap{top:104px}
+  
+  /* Mobile Swap Button: 4-5px up aur thoda right side par */
+  .swap{
+    position: absolute;
+    left: auto;
+    right: 18px;
+    top: 95px;
+    transform: none;
+  }
+  .swap:hover{
+    transform: scale(1.1);
+  }
 
   .details,.spanel,.info{padding:16px 16px 32px}
   .legend{max-width:78%}
