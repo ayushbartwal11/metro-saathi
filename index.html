@@ -16,6 +16,9 @@
   <div class="brand">
     <img src="logo.png" alt="Delhi Metro Saathi logo" />
     <h1><span class="red">DELHI METRO</span><span class="white">SAATHI</span></h1>
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mnav">
+      <span></span><span></span><span></span>
+    </button>
   </div>
   <nav class="nav">
     <button data-tab="planner" class="active">ROUTE PLANNER</button>
@@ -29,6 +32,13 @@
     </div>
   </div>
 </header>
+
+<nav class="mnav" id="mnav">
+  <button data-tab="planner" class="active">Route Planner</button>
+  <button data-tab="stations">Stations</button>
+  <button data-tab="map">Map</button>
+  <button data-tab="info">Info</button>
+</nav>
 
 <main class="app">
   <aside class="side">
@@ -127,6 +137,32 @@
     document.getElementById("lineLegendList").innerHTML = LINES.map(function (l) {
       return "<li>" + l.name + " &mdash; " + l.stations.length + " stations</li>";
     }).join("");
+
+    var hamburger = document.getElementById("hamburger");
+    var mnav = document.getElementById("mnav");
+
+    hamburger.addEventListener("click", function () {
+      var isOpen = mnav.classList.toggle("open");
+      hamburger.classList.toggle("open", isOpen);
+      hamburger.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
+
+    mnav.querySelectorAll("button[data-tab]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var tab = btn.getAttribute("data-tab");
+
+        /* Reuse the existing desktop nav logic instead of duplicating it */
+        var desktopBtn = document.querySelector('.nav button[data-tab="' + tab + '"]');
+        if (desktopBtn) desktopBtn.click();
+
+        mnav.querySelectorAll("button").forEach(function (b) { b.classList.remove("active"); });
+        btn.classList.add("active");
+
+        mnav.classList.remove("open");
+        hamburger.classList.remove("open");
+        hamburger.setAttribute("aria-expanded", "false");
+      });
+    });
   });
 </script>
 </body>
