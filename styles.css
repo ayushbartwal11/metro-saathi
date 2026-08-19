@@ -36,6 +36,24 @@ body{
 .nav button:hover{color:#fff}
 .nav button.active{color:#fff;border-bottom-color:var(--lava)}
 
+/* ---------- mobile hamburger + dropdown menu (hidden on desktop) ---------- */
+.hamburger{
+  display:none;
+  width:34px;height:34px;flex-shrink:0;margin-left:12px;
+  border-radius:9px;border:1px solid #2a4272;background:var(--navy-3);
+  cursor:pointer;align-items:center;justify-content:center;
+  flex-direction:column;gap:4px;
+}
+.hamburger span{
+  display:block;width:17px;height:2px;border-radius:2px;background:var(--text);
+  transition:transform .2s ease,opacity .2s ease;
+}
+.hamburger.open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+
+.mnav{display:none}
+
 /* ---------- live server badge & animation ---------- */
 .tools{display:flex;align-items:center;gap:14px;}
 .live-server-badge{
@@ -230,20 +248,47 @@ text.pin{font:700 10px Inter,sans-serif;fill:#fff;text-anchor:middle;pointer-eve
 
 /* ---------- mobile ---------- */
 @media (max-width:900px){
-  body{overflow:auto}
+  html,body{overflow-x:hidden}
+  body{overflow-y:auto;background:var(--navy-2)}
   .topbar{height:64px;padding-right:12px}
   .brand{padding:0 10px;gap:9px}
   .brand img{width:42px;height:42px}
   .brand h1{font-size:14px}
-  .nav{overflow-x:auto;scrollbar-width:none}
-  .nav::-webkit-scrollbar{display:none}
-  .nav button{padding:0 11px;font-size:12px}
-  .app{flex-direction:column;height:auto}
+
+  /* replace the horizontal-scroll tab bar with the hamburger + dropdown */
+  .nav{display:none}
+  .hamburger{display:flex}
+  .mnav{
+    display:none;flex-direction:column;
+    background:var(--navy-2);border-bottom:1px solid var(--line);
+  }
+  .mnav.open{display:flex}
+  .mnav button{
+    background:none;border:0;text-align:left;color:var(--muted);
+    font:600 13.5px/1 Inter,sans-serif;letter-spacing:.7px;
+    padding:14px 22px;border-bottom:1px solid var(--line);cursor:pointer;
+  }
+  .mnav button:last-child{border-bottom:0}
+  .mnav button.active{color:#fff;background:var(--navy-3)}
+
+  .app{flex-direction:column;height:auto;background:var(--navy-2)}
   .side{width:100%;max-width:100%}
-  .mapwrap{height:70vh;padding:10px}
+
+  /* remove the SVG network map on mobile so it doesn't eat space, and
+     make sure no light background gap is left where it used to be */
+  .mapwrap{display:none}
+
   .stats{gap:8px;padding:0 16px 16px}
   .stat b{font-size:17px}
-  .search{padding:16px}
+
+  /* From / To fields: centered, proportionate, no manual zoom needed */
+  .search{padding:18px 16px 20px;max-width:480px;margin:0 auto}
+  .field{width:100%}
+  .field input{
+    width:100%;height:46px;font-size:16px;box-sizing:border-box;
+  }
+  .swap{top:104px}
+
   .details,.spanel,.info{padding:16px 16px 32px}
   .legend{max-width:78%}
 }
